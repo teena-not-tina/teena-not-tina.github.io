@@ -37,6 +37,10 @@ flowchart LR
 
 이 그림은 역할을 설명하기 위한 단순화다. LangChain과 LangGraph는 항상 함께 써야 하는 것은 아니다. LangGraph는 독립적으로 사용할 수 있고, 현재 LangChain 에이전트 구현은 LangGraph의 실행 기능을 활용한다. Langfuse도 특정 프레임워크에만 묶이지 않고 다양한 LLM 애플리케이션을 관측할 수 있다.
 
+각 도구 안에서 무엇이 일어나는지 조금 더 구체적으로 그리면 다음과 같다. **LangChain의 단계 연결, LangGraph의 분기와 재시도, Langfuse가 애플리케이션 바깥에서 실행을 관측하는 역할**을 나란히 볼 수 있다.
+
+![LangChain, LangGraph, Langfuse의 구성 요소와 실행 흐름을 비교한 개념도. 대시보드 수치는 설명용 예시다.](/img/langchain-langgraph-langfuse-comparison.png)
+
 ## RAG에 적용해 보면
 
 사용자 질문을 받아 검색하고 답을 만드는 RAG를 떠올려 보자.
