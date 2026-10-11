@@ -34,6 +34,7 @@ home = ["HTML", "RSS"]
   about_me = true
 
   custom_css = ["css/custom-overrides.css"]
+  custom_js = ["js/goatcounter.js"]
   [params.social]
   rss            = true
   github         = "https://github.com/teena-not-tina"
