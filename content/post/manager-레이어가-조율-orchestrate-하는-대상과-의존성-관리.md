@@ -40,7 +40,7 @@ async def ask_chatbot(self, user_id: str, prompt: str):
 ```
 #### 패턴 B: 외부 스토리지/API 연동 후 DB 기록 (Resource First)
 > **"외부 리소스(S3, 외부 서버) 생성이 성공해야만 DB에 그 결과(URL, Key)를 저장한다"**
-- **시나리오:** 이미지 업로드 또는 외부 MCP 서버 연동 (`resource_manager.py` / `mcp_manager.py` 예시)
+- **시나리오:** 이미지 업로드 또는 외부 MCP 서버 연동
 - **Manager의 조율 순서:**
 	1. `S3 Storage Client`로 파일 업로드 실행 → S3 URL 획득
 	2. 업로드 실패 시? DB 저장을 시작조차 하지 않고 에러 반환.

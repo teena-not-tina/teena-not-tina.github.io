@@ -18,8 +18,8 @@ ES는 원문을 통째로 비교하지 않는다. **저장할 때 문서를 조�
 검색: "도마뱀"          → [도마뱀]               ← 이 조각으로 표를 조회
 ```
 양쪽을 **같은 analyzer로** 쪼개야 대조가 성립한다. 비슷한지 판단하는 게 아니라 **완전 일치**만 본다.
-## 실제로 겪은 버그 (테스트 환경)
-예시 인덱스가 중국어용 analyzer(ik)를 쓰고 있어서 한글이 한 글자씩 쪼개졌다.
+## 실제로 겪은 버그
+기존 인덱스가 중국어용 analyzer(ik)를 쓰고 있어서 한글이 한 글자씩 쪼개졌다.
 ```javascript
 "도마뱀" → [도][마][뱀]
 ```
@@ -35,7 +35,7 @@ es.index(문서)      # 저장은 됨. 아직 검색에 안 보임
                     # ↓ 1초 뒤 자동, 또는 es.indices.refresh()
 es.count()          # 이제 보임
 ```
-### 실제로 데이터를 날릴 뻔한 지점 (2026-08 재색인)
+### 실제로 데이터를 날릴 뻔한 지점 (재색인 작업)
 analyzer를 바꾸면 재색인이 필요한데, 인덱스 이름이 고정되어 있어 **백업 인덱스를 경유해 왕복**해야 했다. 원본 → 백업 → (원본 삭제·재생성) → 원본. 첫 복사 직후 refresh를 빼먹었더니:
 ```javascript
 _reindex 원본 → 백업     56건 복사됨
@@ -131,12 +131,12 @@ kuromoji는 한글 사전이 없어서 한글을 어절 통째로만 쪼갠다. 
 <tr>
 <td>index</td>
 <td>document의 묶음(RDB의 table)</td>
-<td>자료 모음마다 하나 (`generate_fulltext_index_name`)</td>
+<td>자료 모음마다 하나 (이름 생성 함수로 계산)</td>
 </tr>
 <tr>
 <td>mapping</td>
 <td>index의 스키마 — 필드 타입·analyzer 지정</td>
-<td>`es_client.py`의 `create_fulltext_index_mapping()`</td>
+<td>ES 클라이언트 모듈의 매핑 생성 함수</td>
 </tr>
 <tr>
 <td>node / shard</td>
